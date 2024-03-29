@@ -12,6 +12,8 @@ import lk.ijse.gdse65.aad.HelloSoringBoot.services.AuthenticationService;
 import lk.ijse.gdse65.aad.HelloSoringBoot.services.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,13 @@ public class AuthenticationServiceIMPL implements AuthenticationService {
 
     @Override
     public JWTAuthResponse signIn(SignIn signIn) {
-        return null;
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(signIn.getEmail(),signIn.getPassword())
+        );
+        var userByEmail = user.findByEmail(signIn.getEmail())
+                .orElseThrow(()->new UsernameNotFoundException("User Not Found"));
+        var token = jwtService.generateToken(userByEmail);
+        return JWTAuthResponse.builder().token(token).build();
     }
 
     @Override
