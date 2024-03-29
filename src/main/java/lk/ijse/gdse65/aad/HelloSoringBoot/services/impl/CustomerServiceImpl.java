@@ -1,10 +1,11 @@
-package lk.ijse.gdse65.aad.HelloSoringBoot.services;
+package lk.ijse.gdse65.aad.HelloSoringBoot.services.impl;
 
 import jakarta.transaction.Transactional;
 import lk.ijse.gdse65.aad.HelloSoringBoot.conversion.ConversionData;
 import lk.ijse.gdse65.aad.HelloSoringBoot.dto.CustomerDTO;
 import lk.ijse.gdse65.aad.HelloSoringBoot.entity.CustomerEntity;
 import lk.ijse.gdse65.aad.HelloSoringBoot.repostory.CustomerDao;
+import lk.ijse.gdse65.aad.HelloSoringBoot.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
     @Autowired
