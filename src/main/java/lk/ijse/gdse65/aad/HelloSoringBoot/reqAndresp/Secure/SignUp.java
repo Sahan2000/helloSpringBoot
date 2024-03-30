@@ -1,6 +1,5 @@
 package lk.ijse.gdse65.aad.HelloSoringBoot.reqAndresp.Secure;
 
-import lk.ijse.gdse65.aad.HelloSoringBoot.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
